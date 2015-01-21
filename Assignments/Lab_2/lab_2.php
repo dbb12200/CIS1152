@@ -6,7 +6,7 @@
  * This lab focuses on your understanding of arithmatic.
  *
  * @version 1.0
- * @author YOUR_NAME <YOUR_EMAIL_ADDRESS@vtc.edi>
+ * @author Daniel_Bingham <dbb12200@vtc.edi>
  * @since 20150120
  */
 
@@ -23,7 +23,8 @@ define('GRAVITY', 9.8);
 
 function truncateFloat($float_value)
 {
-
+	$truncate = (int) ($float_value*100)/100;
+	echo "The truncated version of " . $float_value . " is: " . $truncate;
 }
 
 /**
@@ -31,7 +32,8 @@ function truncateFloat($float_value)
  */
 function farenheit2Kelvin($degrees_f)
 {
-
+	$temp_k= ($degrees_f-32)*(5/9)+273.15;
+	echo "The temperature of " . $degrees_f . " degrees F is: " . $temp_k;
 }
 
 /**
@@ -39,7 +41,8 @@ function farenheit2Kelvin($degrees_f)
  */
 function dodecahedronVolume($area)
 {
-
+	$volume = ((15+(7*sqrt(5)))/4)*pow($area,3);
+	echo "The area of a dodecahedron with a face area of " . $area . " is: " . $volume;
 }
 
 /**
@@ -47,5 +50,14 @@ function dodecahedronVolume($area)
  */
 function impactVelocity($height)
 {
-
+	$vel = sqrt(2*GRAVITY*$height);
+	echo "The force the thingy at height " . $height . " will hit the ground at is: " . $vel;
 }
+
+impactVelocity(32);
+echo "<br>";
+truncateFloat(3.1415);
+echo "<br>";
+farenheit2Kelvin(32);
+echo "<br>";
+dodecahedronVolume(1.2);
