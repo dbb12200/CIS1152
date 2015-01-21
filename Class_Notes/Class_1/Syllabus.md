@@ -7,7 +7,7 @@ CIS 1152 Spring 2015
 **Textbook:** [Learning PHP, MySQL & JavaScript: With jQuery, CSS & HTML5, 4th edition](http://www.amazon.com/Learning-PHP-MySQL-JavaScript-jQuery/dp/1491918667/ref=dp_ob_title_bk) by Robin Nixon (ISBN-13: 978-1491918661, ISBN-10: 1491918667)
 
 >Any sufficiently advanced technology is indistinguishable from magic.
->—Arthur C. Clarke
+--Arthur C. Clarke
 
 ##Course Description
 Students learn intermediate skills and techniques used in webpage development. Topics include applying sophisticated formatting to text; creating documents that automatically display another page and that contain interactive Javascript; creation of and work with frames documents; examination of document styles and recommendations on improvements; HTML document creation/conversion tools; using XML to manage content; an introduction to database theory; use of basic SQL programming.

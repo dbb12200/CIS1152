@@ -1,0 +1,1 @@
+http://www.joelonsoftware.com/articles/fog0000000043.html

@@ -164,4 +164,13 @@ Once you have completed that task, add the following code to the body of the pag
 ?>
 ```
 
-Add, commit, and push your project to your repo. Email me a link to your repo. You are finished. Wasn't that easy.
+Add, commit, and push your project to your repo.
+
+```bash
+git add .
+git commit -m "Not this text!"
+git push origin master
+
+Email me a link to your repo at [blevin@vtc.edu](mailto:blevin@vtc.edu).
+
+You are finished. Wasn't that easy.
