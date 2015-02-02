@@ -10,6 +10,8 @@
 
 ----
 
+# This is how!
+
 ```php
 function areaOfACircle($radius)
 {
@@ -37,3 +39,6 @@ http://www.php-fig.org/psr/psr-2/
 ----
 
 # Idiomatic Variable Naming
+
+- Bad! -> `$1, $thing, $think_of_better_name_later`
+- Good! -> `$radius, `
