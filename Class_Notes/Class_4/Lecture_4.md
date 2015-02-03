@@ -1,361 +1,250 @@
-Functions
-=========
+# Functions
 
-A function is a statement block that has been assigned a name. That name
-allows it to be called or referred to, meaning the function can be
-invoked by name to perform some task, or function. This means that you
-can create a piece of code that will not run until specifically called
-for or invoked by another piece of code.
+A function is a statement block that has been assigned a name. That name allows it to be called or referred to, meaning the function can be invoked by name to perform some task, or function. This means that you can create a piece of code that will not run until specifically called for or invoked by another piece of code.
 
-Being able to defer the execution of code until it is called for is a
-very powerful tool. It allows us to step out of linear, batch processing
-mode and instead operate in an event driven environment.
+Being able to defer the execution of code until it is called for is a very powerful tool. It allows us to step out of linear, batch processing mode and instead operate in an event driven environment.
 
-For students coming directly from Programing and Logic I, think of a
-function as a classless method.
+For students coming directly from Java, think of a function as a classless method.
 
-Defining Functions
-------------------
+## Defining Functions
 
 In PHP a function is defined as follows:
 
-function functionName(parameter) {
-
-statements;
-
-return;
+```php
+function functionName(parameter)
+{
+    statements;
+    return;
 
 }
+```
 
 -   The definition starts with the keyword function.
-
 -   This is followed by the name of the function.
+-   After that comes a set of parentheses containing the parameters, or input values, the function is expecting to receive. Each parameter must be a variable name. These variables are created by declaring them as parameters and are local to the function. Sometimes you will hear parameters called arguments. Technically an argument is what is sent and a parameter is what the function is expecting to receive. Most textbooks authors pick one or the other term and just stick with it, so you can consider them to be interchangeable words.
+-   After this comes the curly braces that delimit the statement block that makes up the body of the function.
+-   The last statement in the statement block should be a return statement, which returns control back to whatever called the function. The keyword return can stand-alone or it can be followed (with no intervening line break) by a value to be returned. If no value is specified, then the function returns null.
 
--   After that comes a set of parentheses containing the parameters, or
-    input values, the function is expecting to receive. Each parameter
-    must be a variable name. These variables are created by declaring
-    them as parameters and are local to the function. Sometimes you will
-    hear parameters called arguments. Technically an argument is what is
-    sent and a parameter is what the function is expecting to receive.
-    Most textbooks authors pick one or the other term and just stick
-    with it, so you can consider them to be interchangeable words.
-
--   After this comes the curly braces that delimit the statement block
-    that makes up the body of the function.
-
--   The last statement in the statement block should be a return
-    statement, which returns control back to whatever called the
-    function. The keyword return can stand-alone or it can be followed
-    (with no intervening line break) by a value to be returned. If no
-    value is specified, then the function returns null.
-
-function testVal(\$x) {
-
-if (!(is\_int(\$x))) {
-
-echo "\$x is not a number!";
-
+```php
+function testVal($x)
+{
+    if (!(is_int($x)))
+    {
+        echo "$x is not a number!";
+    }
+    return;
 }
 
-return;
-
+function strangeEquation($x, $y, $q)
+{
+    $z = $x * $y;
+    $p = $q - 7;
+    return ($z * $x % ($y + 1)) / $p;
 }
+```
 
-function strangeEquation(x, y, q) {
+When trying to figure out what to name your functions, you only need to remember a few basic rules.
 
-var z = x \* y;
-
-var p = q - 7;
-
-return (z \* x % (y + 1)) / p;
-
-}
-
-When trying to figure out what to name your functions, you only need to
-remember a few basic rules.
-
--   PHP function names are not case sensitive. Therefore, fname(),
-    Fname(), and FNAME() all refer to the same function.
-
--   The function name can only contain letters from the ASCII character
-    set, digits, and the underscore.
-
+-   PHP function names are not case sensitive. Therefore, fname(), Fname(), and FNAME() all refer to the same function.
+-   The function name can only contain letters from the ASCII character set, digits, and the underscore.
 -   The function name cannot begin with a digit.
+-   You cannot give a function the same name as another function or reserved keyword. PHP does not support function overloading.
 
--   You cannot give a function the same name as another function or
-    reserved keyword. PHP does not support function overloading.
+## Invoking Functions
 
-Invoking Functions
-------------------
-
-You invoke, or call, a function by name. The name needs to be followed
-by a set of parentheses that contain zero or more values to be passed to
-the function, called the arguments for the function call. The number of
-values being passed should be equal to the number of parameters of the
-function. The values are assigned to the parameters in the order in
-which they appear defined in the function's parameter list.
+You invoke, or call, a function by name. The name needs to be followed by a set of parentheses that contain zero or more values to be passed to the function, called the arguments for the function call. The number of values being passed should be equal to the number of parameters of the function. The values are assigned to the parameters in the order in which they appear defined in the function's parameter list.
 
 Invoking a function:
 
-\$x = 'bob';
+```php
+$x = 'bob';
+testVal($x);
 
-testVal(\$x);
+$x = 1;
+$y = 2;
+$q = 3;
+strangeEquation($x, $y, $q);
+```
 
-\$x = 1;
+If you want to pass values of a certain type, you need to test for this yourself since PHP, being a loosely typed language, does not check.
 
-\$y = 2;
+If you pass too many arguments, then the additional values do not get assigned to named parameters. They can still be accessed within the function, just not as named variables from the parameter list.
 
-\$q = 3;
+If you pass too few arguments, then the remaining parameters will be set to null. PHP will generate an error message about this, but will try to run the function anyway.
 
-strangeEquation(\$x, \$y, \$q);
+If you don't want to pass certain arguments, you cannot use the empty comma notation as you can in some languages. Instead you just need to put null values in those locations.
 
-If you want to pass values of a certain type, you need to test for this
-yourself since PHP, being a loosely typed language, does not check.
-
-If you pass too many arguments, then the additional values do not get
-assigned to named parameters. They can still be accessed within the
-function, just not as named variables from the parameter list.
-
-If you pass too few arguments, then the remaining parameters will be set
-to null. PHP will generate an error message about this, but will try to
-run the function anyway.
-
-If you don't want to pass certain arguments, you cannot use the empty
-comma notation as you can in some languages. Instead you just need to
-put null values in those locations.
-
-\$x = fName(,,\$c); // incorrect
-
-\$x = fName(null,null,\$c); // correct
+```php
+$x = fName(, ,$c); // incorrect
+$x = fName(null, null, $c); // correct
+```
 
 ### Passing by Reference
 
-PHP always passes by value, including objects and arrays. There are two
-primary models for passing data back and forth in a program. One is
-passing by value and the other is passing by reference. Passing by value
-means that when you pass the variable by sending it as an argument to a
-function, or assigning it to another variable using an assignment
-operator, a copy of the value of the variable is made and that is what
-is passed to the receiving function or variable.
+PHP always passes by value, including objects and arrays. There are two primary models for passing data back and forth in a program. One is passing by value and the other is passing by reference. Passing by value means that when you pass the variable by sending it as an argument to a function, or assigning it to another variable using an assignment operator, a copy of the value of the variable is made and that is what is passed to the receiving function or variable.
 
-It works like this: If I set \$a equal to 7, and then say \$b = \$a, I
-will then have two variables each storing the value if 7. If I change
-either one, it won't affect the other one. It is like a photocopy. After
-I have made the copies, writing something on one copy won't affect the
-other copies.
+It works like this: If I set `$a` equal to `7`, and then say `$b = $a`, I will then have two variables each storing the value if `7`. If I change either one, it won't affect the other one. It is like a photocopy. After I have made the copies, writing something on one copy won't affect the other copies.
 
-Passing by reference is a little more complicated and normally only
-occurs in object oriented environments. To understand it, it first helps
-to understand that variables are actually just pointers pointing to
-values stored in memory. Passing by value works by creating a new
-pointer pointing to a new location in memory with a copy of the stuff
-from the old location copied over to the new location. Passing by
-reference created a new pointer but points it to the exact same
-location. It is not actually passing the value anywhere; it is just
-creating new variables pointing to the exact same thing. Another way of
-saying it is that it creates an alias for the current variable instead
-of making a copy.
+Passing by reference is a little more complicated and normally only occurs in object oriented environments. To understand it, it first helps to understand that variables are actually just pointers pointing to values stored in memory. Passing by value works by creating a new pointer pointing to a new location in memory with a copy of the stuff from the old location copied over to the new location. Passing by reference created a new pointer but points it to the exact same location. It is not actually passing the value anywhere; it is just creating new variables pointing to the exact same thing. Another way of saying it is that it creates an alias for the current variable instead of making a copy.
 
-Passing by reference is not something that is needed very often. So, I
-will not spend time covering it here. If you find yourself in need of
-this particular skill, please refer the PHP Manual section on this topic
-([References
-Explained](http://php.net/manual/en/language.references.php)).
+Passing by reference is not something that is needed very often. So, I will not spend time covering it here. If you find yourself in need of this particular skill, please refer the PHP Manual section on this topic ([References Explained](http://php.net/manual/en/language.references.php)).
 
 ### Global and Static Variables
 
-PHP is slightly odd in that variables defined outside of functions,
-which we would normally consider to be global are not accessible from
-within functions. They are, in essence, local to the global environment.
-So how do we get at those values within a function without passing all
-of them in as arguments?
+PHP is slightly odd in that variables defined outside of functions, which we would normally consider to be global are not accessible from within functions. They are, in essence, local to the global environment. So how do we get at those values within a function without passing all of them in as arguments?
 
 PHP provides two methods for getting global variables into functions.
 
-The first is the \$GLOBALS[] array, which is a super-global array that
-stores all user defined global variables. Thus, you can access a global
-variable called \$thisVar within the function with \$GLOBALS["thisVar"].
+The first is the `$GLOBALS[]` array, which is a super-global array that stores all user defined global variables. Thus, you can access a global variable called `$thisVar` within the function with `$GLOBALS["thisVar"]`.
 
-The second method is to use the global keyword. It is used inside the
-function to create references to global variables into the function.
-Prefixing a variable, or list of variables, with the word global as its
-own complete statement declares that you want to use the variable within
-the function. Note, this does not pass a copy or a reference in to the
-function; it makes the variable available within the function. Changes
-to the variable will show up outside the function.
+The second method is to use the global keyword. It is used inside the function to create references to global variables into the function. Prefixing a variable, or list of variables, with the word global as its own complete statement declares that you want to use the variable within the function. Note, this does not pass a copy or a reference in to the function; it makes the variable available within the function. Changes to the variable will show up outside the function.
 
-function abc() {
-
-global \$x;
-
-global \$a, \$b, \$c;
-
-[...]
-
+```php
+function abc()
+{
+    global $x;
+    global $a, $b, $c;
 }
+```
 
-Static variables are variables that are local to the function but
-persist across instances of the functions execution. Normally local
-variables within functions are created when the function is called and
-destroyed when the function is finished. If you want local variables to
-persist across calls to the function, you can use the static keyword
-when declaring the variable. This will cause the variable to only be
-initialized during the first call to the function. During subsequent
-calls, the function will check to see if the variable already exists. If
-it does, it will work with the value that already exists.
+Static variables are variables that are local to the function but persist across instances of the functions execution. Normally local variables within functions are created when the function is called and destroyed when the function is finished. If you want local variables to persist across calls to the function, you can use the static keyword when declaring the variable. This will cause the variable to only be initialized during the first call to the function. During subsequent calls, the function will check to see if the variable already exists. If it does, it will work with the value that already exists.
 
-function abc() {
-
-static \$x;
-
-static \$a = 7;
-
-[...]
-
+```php
+function abc()
+{
+    static $x;
+    static $a = 7;
 }
+```
 
-Advanced Functions
-------------------
+##Advanced Functions
 
 ### Default Parameter Values
 
-PHP allows you to set default parameter values in the function
-definition. This allows the parameters to be assigned values for when a
-value is not passed in for them. The format looks like this:
+PHP allows you to set default parameter values in the function definition. This allows the parameters to be assigned values for when a value is not passed in for them. The format looks like this:
 
-function withDef(\$x, \$y = 12; \$z = 24) {
+```
+function withDef($x, $y = 12; $z = 24)
+{
 
-[ ... statements ... ]
+    [ ... statements ... ]
 
 }
+```
 
-When you use default values for parameters, they become optional and do
-not have to be included in the function call. The rules regarding their
-use are pretty simple. Parameters with default values must be declared
-after parameters without default values. Which is to say, you have to
-specify the required parameters before you specify the optional ones.
+When you use default values for parameters, they become optional and do not have to be included in the function call. The rules regarding their use are pretty simple. Parameters with default values must be declared after parameters without default values. Which is to say, you have to specify the required parameters before you specify the optional ones.
 
-You cannot leave any blank parameters between the start of the list and
-the last one specified. Every parameter up to the last one provided must
-have a value passed to it. Thus you should order arguments in the order
-of must common inclusion to least common inclusion.
+You cannot leave any blank parameters between the start of the list and the last one specified. Every parameter up to the last one provided must have a value passed to it. Thus you should order arguments in the order of must common inclusion to least common inclusion.
 
 ### Variable Length Argument Lists
 
-If you don't know how many arguments you will need to provide, PHP does
-have methods for working with any number of arguments in a function. To
-make use of them you create a function with no parameters.
+If you don't know how many arguments you will need to provide, PHP does have methods for working with any number of arguments in a function. To make use of them you create a function with no parameters.
 
-function someFunc() {
-
-[ ... statements ... ]
-
+```php
+function someFunc()
+{
+    [ ... statements ... ]
 }
+```
 
-You then call the function with as many parameters as you want to pass
-to it. Within the function you make use of a set of system-defined
-functions that access the parameters passed in and allow you to work
-with them.
+You then call the function with as many parameters as you want to pass to it. Within the function you make use of a set of system-defined functions that access the parameters passed in and allow you to work with them.
 
-#### func\_get\_args()
+`func_get_args()` is a function returns the arguments that have been passed to the function as an array. You can then walk through the array normally.
 
-This function returns the arguments that have been passed to the
-function as an array. You can then walk through the array normally.
-
-#### func\_num\_args()
-
-This function returns the number of arguments that were passed to the
-function. Useful to test whether any have been passed at all.
-
-function someFunc() {
-
-if (func\_num\_args() == 0) { return false; }
-
-[ ... statements ...]
-
+```php
+function foo()
+{
+    $numargs = func_num_args();
+    echo "Number of arguments: $numargs<br />\n";
+    if ($numargs >= 2) {
+        echo "Second argument is: " . func_get_arg(1) . "<br />\n";
+    }
+    $arg_list = func_get_args();
+    for ($i = 0; $i < $numargs; $i++) {
+        echo "Argument $i is: " . $arg_list[$i] . "<br />\n";
+    }
 }
+```
 
-####
+func_num_args() is a function returns the number of arguments that were passed to the function. Useful to test whether any have been passed at all.
 
-#### func\_get\_arg()
-
-This returns a single argument for the arguments passed to the function.
-It takes as an argument the index position of the argument you want
-returned. Not that it is a separate function from func\_get\_args() and
-differs only by the absence of an S at the end.
-
-function someFunc() {
-
-if (func\_num\_args() == 0) {
-
-return false;
-
-} else {
-
-for (\$i =0; \$i \< func\_num\_args(); \$i++) {
-
-\$x = func\_get\_arg(\$i);
-
-[ ... statements ...]
-
+```php
+function someFunc()
+{
+    if (func_num_args() == 0) { return false; }
+    [ ... statements ...]
 }
+```
 
+`func_get_arg()` returns a single argument for the arguments passed to the function. It takes as an argument the index position of the argument you want returned. Not that it is a separate function from `func_get_args()` and differs only by the absence of an *S* at the end.
+
+```php
+function someFunc()
+{
+    if (func_num_args() == 0)
+    {
+        return false;
+    } else
+    {
+        for ($i =0; $i < func_num_args(); $i++)
+        {
+            $x = func_get_arg($i);
+            [ ... statements ...]
+        }
+    }
 }
+```
 
-}
-
-The only caveat to these functions is that they cannot be used as
-arguments to be passed to another function. You can write the results to
-a variable and use that.
+The only caveat to these functions is that they cannot be used as arguments to be passed to another function. You can write the results to a variable and use that.
 
 ### Variable Functions
 
 As with variable variables, PHP allows you to create variable functions.
 
-A variable function is one whose name has been assigned to a variable
-and which is then called through that variable.
+A variable function is one whose name has been assigned to a variable and which is then called through that variable.
 
-function fX(\$a) {
-
-[ ... statements ... ]
-
+```php
+function fX($a)
+{
+    [ ... statements ... ]
 }
 
-\$indirect = "fX";
+$indirect = "fX";
 
-\$y = \$indirect(\$x);
+$y = $indirect($x);
+```
 
-This allows you to dynamically determine function names to be executed
-from previous processing.
+This allows you to dynamically determine function names to be executed from previous processing.
 
 ### Anonymous Functions
 
-PHP also allows you to generate anonymous functions, also called lambda
-functions. These functions do not have names. They are instead assigned
-directly to variables and called by the variable name. This allows you
-to create transient functions without worrying about having to think up
-a new function name each time you do.
+PHP also allows you to generate anonymous functions, also called lambda functions. These functions do not have names. They are instead assigned directly to variables and called by the variable name. This allows you to create transient functions without worrying about having to think up a new function name each time you do.
 
-To create an anonymous function, you use the create\_function()
-function. It takes two strings as arguments. One represents the
-parameter list for the function, exactly as it would appear between the
-parentheses in a normal function definition. The other is a string
-contains the actual body of the function. As you might it expect, it is
-best used with shorter functions.
+To create an anonymous function, you use the `create_function()` function. It takes two strings as arguments. One represents the parameter list for the function, exactly as it would appear between the parentheses in a normal function definition. The other is a string contains the actual body of the function. As you might it expect, it is best used with shorter functions.
 
-\$fX = create\_function('\$a,\$b','return \$a\*\$b;');
+```php
+$fX = create_function('$a, $b', 'return $a * $b;');
+$z = $fX($x, $y);
+```
 
-\$z = \$fX(\$x, \$y);
+Anonymous functions do have names, but they are randomly generated strings, which minimizes the chance of the function accidentally producing two functions with the same name.
 
-Anonymous functions do have names, but they are randomly generated
-strings, which minimizes the chance of the function accidentally
-producing two functions with the same name.
+The ability to create anonymous functions exists in PHP primarily for interacting with functions that expect other functions as their arguments. It makes the coding easier and most such functions are very contextual and tend to require variations if not within the same execution of a script than certainly between executions.
 
-The ability to create anonymous functions exists in PHP primarily for
-interacting with functions that expect other functions as their
-arguments. It makes the coding easier and most such functions are very
-contextual and tend to require variations if not within the same
-execution of a script than certainly between executions.
+It is a little deep water and we will not heavily dwell here, but anonymous functions are incredibly useful and are becoming very common place in modern programming techniques.  A good example is when you need to map output of an array.
+
+```php
+$data = array(
+        array('id' => 1, 'name' => 'Bob', 'position' => 'Clerk'),
+        array('id' => 2, 'name' => 'Alan', 'position' => 'Manager'),
+        array('id' => 3, 'name' => 'James', 'position' => 'Director')
+);
+
+$names = array_map(
+        function($person) { return $person['name']; },
+        $data
+);
+```
 
 ### Nesting
 
