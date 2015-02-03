@@ -380,14 +380,182 @@ defined once, this will only work if the conditional is only executed
 once in the script.
 
 # Arrays
-***Add Arrays Lecture Here***
+An array is a collection of data values organized as an ordered collection of key-value pairs. It is one of the many included data structures in PHP. An array is like a filing cabinet. Each drawer can contain individual elements but they are held together as one object. Just as a file cabinet is not limited to just holding files, an array is not limited to holding just one type of data.
+
+We will cover creating an array, adding and removing elements from an array, and looping over the contents of an array. We will discuss both associative and indexed arrays. You could say we are going to cover and array of arrays. Because arrays are very common and useful, there are many built-in functions that work with them in PHP. For example, if you want to send email to more than one email address, you’ll store the email addresses in an array and then loop through the array, sending the message to the current email address. Also, if you have a form that permits multiple selections, the items the user selected are returned in an array. If you access the Super Globals all of their data is held as arrays. You will see arrays over and over again. We better learn to like them!
+
+## Indexed vs Associative Arrays
+There are two kinds of arrays in PHP: indexed and associative. The keys of an indexed array are integers, beginning at 0. Indexed arrays are used when you identify things by their position. Associative arrays have strings as keys and behave more like two-column tables. The first column is the key, which is used to access the value.
+
+PHP internally stores all arrays as associative arrays; the only difference between associative and indexed arrays is what the keys happen to be. Some array features are provided mainly for use with indexed arrays because they assume that you have or want keys that are consecutive integers beginning at 0. In both cases, the keys are unique. In other words, you can’t have two elements with the same key, regardless of whether the key is a string or an integer.
+
+PHP arrays have an internal order to their elements that is independent of the keys and values, and there are functions that you can use to traverse the arrays based on this internal order. The order is normally that in which values were inserted into the array, but the sorting functions described later in this chapter let you change the order to one based on keys, values, or anything else you choose.
+
+However, it is worth noting that there are many subtle differences in between associative and indexed arrays in PHP.
+
+The most prevalent one that comes to mind is that an indexed array can be looped over using a traditional for loop, whereas an associative one cannot (because it does not have the numeric indexes):
+
+```php
+for ($i = 0; $i < count($indexed_array); $i++)
+{
+    echo $indexed_array[$i];
+}
+```
+
+Of course, php also has a foreach keyword, which works the same on both types.
+
+## Array Fundamentals
+Before we look at creating an array, let’s look at the structure of an existing array. You can access specific values from an existing array using the array variable’s name, followed by the element’s key, or index, within square brackets:
+
+```php
+$person['Brian']
+$shows[2]
+```
+
+The key can be either a string or an integer. String values that are equivalent to integer numbers (without leading zeros) are treated as integers. Thus, `$array[3]` and `$array['3']` reference the same element, but `$array['03']` references a different element. It is considered best practice to **use the integer without the quotes.**
+
+You don’t have to quote single-word strings. For instance, $person['Brian'] is the same as $person[Brian]. However, it’s considered good PHP style to **always use quotes**, because quoteless keys are indistinguishable from constants. When you use a constant as an unquoted index, PHP uses the value of the constant as the index and emits a warning:
+
+```php
+define('index', 5);
+echo $array[index]; // retrieves $array[5], not $array['index'];
+```
+
+You must use quotes if you’re using interpolation to build the array index:
+
+```php
+$person["Clone{$number}"]
+```
+
+Although sometimes optional, you should also quote the key if you’re interpolating an array lookup to ensure that you get the value you expect:
+
+```php
+// these are wrong
+print "Hello, {$person['name']}";
+print "Hello, {$person["name"]}";
+```
+
+## Multidimensional Arrays
+The values in an array can themselves be arrays. This lets you easily create multidimensional arrays:
+
+```php
+$row0 = array(1, 2, 3);
+$row1 = array(4, 5, 6);
+$row2 = array(7, 8, 9);
+$multi = array($row0, $row1, $row2);
+```
+
+You can refer to elements of multidimensional arrays by appending more `[]`s:
+
+```php
+$value = $multi[2][0]; // row 2, column 0. $value = 7
+```
+
+To interpolate a lookup of a multidimensional array, you must enclose the entire array lookup in curly braces:
+
+```php
+echo("The value at row 2, column 0 is {$multi[2][0]}\n");
+```
+
+Failing to use the curly braces results in output like this:
+
+> The value at row 2, column 0 is Array[0]
+
+# HTTP Basics
+HTTP: the HyperText Transfer Protocol is the transmission protocol used to transmit Web pages on the Internet
+HTTP, or Hypertext Transfer Protocol is the network protocol used to transmit Web content over the Internet. It works with TCP/IP to transmit information. IP stands for Internet Protocol and handles packaging information for delivery. TCP is the Transmission Control Protocol and it handles packaging information for delivery. HTTP handles addressing the package and providing information that allows the client and server to effectively communicate over the Web.
+
+Yes that's way too many acronyms.
+
+Anyway, any online application has numerous layers that it is working in or through. Each layer handles a specific aspect of the task at hand. For instance, when you open a Web browser, you have your operating system, your user account and preferences, the application, and the actual display of the page you are viewing all working together on the screen. On the Internet you have separate layers handling the transmission of data, the packaging of data, and the addressing of data.
+
+One way to grasp it is to imagine you work for a large wholesale company that delivers its own goods. The Transmission Control Protocol is like the delivery fleet that ships the goods. The Internet Protocol is the shipping room at the front of the warehouse, where things are pulled out of the warehouse (the server) and packaged for delivery to the client. Hypertext Transfer Protocol is the sales department that writes up the invoices and, more importantly, the shipping labels for the packers and drivers to use to figure out what to pack and where it goes.
+
+Most of what we talk about when we talk about HTTP is the information it adds to the data package being shipped in order to increase the efficiency of delivery and the usability of the information on both sides of the transaction.
+
+In its simplest form, we can think of HTTP as nothing more than a header, or shipping label, and the protocols for processing the data in this header. If you have ever sent a package by UPS, then you know there is more to a shipping label than just the address it is being sent to. The HTTP header is a protocol that tries to pass all the information an application on the client or server may need from the other end of the transaction.
+
+An HTTP message can be broken into three parts.
+
+the request/response line
+the HTTP header
+the body of the message
+The body of the message is either the content being sent from the server to the client, or form data or an uploaded file being sent from the client to the server. In other words, it is the thing we think of as being the document we sent or received. Not much more needs to be said about that here. However, the other two sections can use some explanation.
+
+Request and Response
+
+If the request line can be seen as a specification of what to order from whom, the response line can be seen as the receipt confirming that the transaction took place. There can only be one of the two in any message.
+
+URI: the Uniform Resource Indicator, a superset of the URL, is a protocol for uniquely identifying every document accessible on the Internet
+The request contains three critical pieces of information. The first is the method of request, which is to say, how the server is supposed to process it. The second is the path to the resource being requested. The third is the version number of HTTP being used.
+
+The method tells the server how to handle the request. The three most common are GET, HEAD, and POST.
+
+GET
+This is a simple request for a document or resource residing at a specific URI (Uniform Resource Indicator). It is the most common type of Web request.
+HEAD
+This is similar to a GET request, except that it is only looking for HTTP header information on the resource, not the resource itself.
+POST
+Indicates that information is being sent the the server inside the HTTP body. The URI should point to a resource capable of handling the data being posted.
+A typical request header might look something like this:
+
+GET /index.php HTTP/1.1
+The reply line indicates whether the request was successful. It includes the protocol being used, a numeric status code, and a short description of the status code.
+
+HTTP/1.1 200 OK
+The numeric status codes fall into the following ranges:
+
+100-199
+Information messages on the current status of processing.
+200-299
+Successful request.
+300-399
+Request cancelled because document or resource has been moved.
+400-499
+Client error. The request was incomplete, incorrect, or otherwise unresolvable.
+500-599
+Server error. Request appears valid, but server could not complete it.
+The most common status message people get to see is 404 Not Found, which simply means that document you requested does not exists. This is either because it really doesn't exist or because you entered the URL wrong. When a 404 is returned it is usually displayed on the browser screen in whatever default format is used by that browser. The server may also transmit a detailed error report page along with an error message if the resource call was unsuccessful.
+
+The HTTP Header
+
+People who know just enough HTML to be dangerous encounter the term HTTP header and may think that is corresponds in some way to the document header in an HTML document. This is not the case. The HTML document header is something you have coded into the document between <head> tags, and, as far as the server is concerned, is part of the document content being sent. The HTML header is information the author has provided for the client application about the document. The HTTP header, on the other hand, is information the client and server provide each other about the transmission process for the document.
+
+If you need a concrete example, think of the HTML header as the date and address written at the top of a business letter, while the HTTP header is the address written on the outside of the envelope. They may both be addresses, but they are physically different things in physically different locations.
+
+The HTTP header contains details about the transaction between the client and server, with slight variations depending on whether it is a request or a response. The header information can be grouped into three different categories. These are:
+
+General
+General information fields contain information about either the client or the server. General information can be as general as nothing but the current date and time.
+Entity
+Entity information fields contain information about the data being transmitted. Common entity information is the date on which the document or resource was last modified or the address of the document requesting this one.
+Request/Response
+The request/response fields contain information about the client and server configuration, including what sort of documents the client can accept and what sort of requests the server can accept. This information includes the server name and version for the server, and the client application name and version for the client. It also includes the platform being used by the client or the server. This information is often used by client or server applications to customize the request or response for the needs of the application on the other end of the connection. It can also be used to specify what sort of documents the client can recieve, so, for example, the server knows not to try to send images or audio files to a text-only interface.
+Each header field is delimited by a line break at the end. In other words, each data field is written on its own line. The end of the header section is delimited by one or more blank lines. In computer terms, a blank line is nothing but some form of newline character. So the end of the header section is actually delimited by a sequence of line break characters with nothing between them.
+
+A sample request header might look as follows:
+
+GET /tutorials/utils/servervars.php HTTP/1.1
+Accept: text/html, image/png, image/jpeg, image/gif, */*
+Accept-Language: en
+Accept-Encoding: deflate, gzip, x-gzip, identity, *
+Connection: Keep-Alive
+Host: localhost
+Referer: http://localhost/tutorials/utils/
+User-Agent: Opera/6.05 (Windows XP; U) [en]
+
+A sample response header might look as follows:
+
+HTTP/1.1 200 OK
+Date: Wed, 22nd Jan 2003 11:15:15 GMT
+Server: Apache/2.0.43 (Win32) PHP/4.3.0
+Last-modified: Wed, 22nd Jan 2003 11:10:47 GMT
+
 
 Super Globals
 =============
 
-***If you are not familiar with arrays, then you probably want to review
-those before looking at this section. Specifically look at Chapter 3 of
-the text starting on page 81. ***
+***If you are not familiar with arrays, then you probably want to review those before looking at this section. Specifically look at Chapter 3 of the text starting on page 81.***
 
 In order to store information coming from both the client and server and
 pertaining to the current execution of a script, PHP has a series of
