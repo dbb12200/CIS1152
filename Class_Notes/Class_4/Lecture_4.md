@@ -1,4 +1,8 @@
-# Functions
+# Lecture 4
+
+<!--TOC-->
+
+## Functions
 
 A function is a statement block that has been assigned a name. That name allows it to be called or referred to, meaning the function can be invoked by name to perform some task, or function. This means that you can create a piece of code that will not run until specifically called for or invoked by another piece of code.
 
@@ -6,7 +10,7 @@ Being able to defer the execution of code until it is called for is a very power
 
 For students coming directly from Java, think of a function as a classless method.
 
-## Defining Functions
+### Defining Functions
 
 In PHP a function is defined as follows:
 
@@ -50,7 +54,7 @@ When trying to figure out what to name your functions, you only need to remember
 -   The function name cannot begin with a digit.
 -   You cannot give a function the same name as another function or reserved keyword. PHP does not support function overloading.
 
-## Invoking Functions
+### Invoking Functions
 
 You invoke, or call, a function by name. The name needs to be followed by a set of parentheses that contain zero or more values to be passed to the function, called the arguments for the function call. The number of values being passed should be equal to the number of parameters of the function. The values are assigned to the parameters in the order in which they appear defined in the function's parameter list.
 
@@ -79,7 +83,7 @@ $x = fName(, ,$c); // incorrect
 $x = fName(null, null, $c); // correct
 ```
 
-### Passing by Reference
+#### Passing by Reference
 
 PHP always passes by value, including objects and arrays. There are two primary models for passing data back and forth in a program. One is passing by value and the other is passing by reference. Passing by value means that when you pass the variable by sending it as an argument to a function, or assigning it to another variable using an assignment operator, a copy of the value of the variable is made and that is what is passed to the receiving function or variable.
 
@@ -89,7 +93,7 @@ Passing by reference is a little more complicated and normally only occurs in ob
 
 Passing by reference is not something that is needed very often. So, I will not spend time covering it here. If you find yourself in need of this particular skill, please refer the PHP Manual section on this topic ([References Explained](http://php.net/manual/en/language.references.php)).
 
-### Global and Static Variables
+#### Global and Static Variables
 
 PHP is slightly odd in that variables defined outside of functions, which we would normally consider to be global are not accessible from within functions. They are, in essence, local to the global environment. So how do we get at those values within a function without passing all of them in as arguments?
 
@@ -117,9 +121,9 @@ function abc()
 }
 ```
 
-##Advanced Functions
+### Advanced Functions
 
-### Default Parameter Values
+#### Default Parameter Values
 
 PHP allows you to set default parameter values in the function definition. This allows the parameters to be assigned values for when a value is not passed in for them. The format looks like this:
 
@@ -136,7 +140,7 @@ When you use default values for parameters, they become optional and do not have
 
 You cannot leave any blank parameters between the start of the list and the last one specified. Every parameter up to the last one provided must have a value passed to it. Thus you should order arguments in the order of must common inclusion to least common inclusion.
 
-### Variable Length Argument Lists
+#### Variable Length Argument Lists
 
 If you don't know how many arguments you will need to provide, PHP does have methods for working with any number of arguments in a function. To make use of them you create a function with no parameters.
 
@@ -197,7 +201,7 @@ function someFunc()
 
 The only caveat to these functions is that they cannot be used as arguments to be passed to another function. You can write the results to a variable and use that.
 
-### Variable Functions
+#### Variable Functions
 
 As with variable variables, PHP allows you to create variable functions.
 
@@ -216,7 +220,7 @@ $y = $indirect($x);
 
 This allows you to dynamically determine function names to be executed from previous processing.
 
-### Anonymous Functions
+#### Anonymous Functions
 
 PHP also allows you to generate anonymous functions, also called lambda functions. These functions do not have names. They are instead assigned directly to variables and called by the variable name. This allows you to create transient functions without worrying about having to think up a new function name each time you do.
 
@@ -246,7 +250,7 @@ $names = array_map(
 );
 ```
 
-### Nesting
+#### Nesting
 
 In PHP, function definitions can be nested. This is a byproduct of support for the object-oriented environment. We will discuss what this means when we cover objects.
 
@@ -254,7 +258,7 @@ When you define a function within another function it does not exist until the p
 
 PHP functions can also be nested inside other statement blocks, such as conditional statements. As with nested functions, such functions will only be defined when that block of code is executed. You can use this to get around the lack of overloading in PHP by allowing multiple versions of the same function to be set up and then have an if statement to determine which one to actually define. Since a function can only be defined once, this will only work if the conditional is only executed once in the script.
 
-# Arrays
+## Arrays
 
 ***Program Note: We will cover arrays in much more detail after we complete the unit on objects***
 
@@ -262,7 +266,7 @@ An array is a collection of data values organized as an ordered collection of ke
 
 We will cover creating an array, adding and removing elements from an array, and looping over the contents of an array. We will discuss both associative and indexed arrays. You could say we are going to cover and array of arrays. Because arrays are very common and useful, there are many built-in functions that work with them in PHP. For example, if you want to send email to more than one email address, you’ll store the email addresses in an array and then loop through the array, sending the message to the current email address. Also, if you have a form that permits multiple selections, the items the user selected are returned in an array. If you access the Super Globals all of their data is held as arrays. You will see arrays over and over again. We better learn to like them!
 
-## Indexed vs Associative Arrays
+### Indexed vs Associative Arrays
 There are two kinds of arrays in PHP: indexed and associative. The keys of an indexed array are integers, beginning at 0. Indexed arrays are used when you identify things by their position. Associative arrays have strings as keys and behave more like two-column tables. The first column is the key, which is used to access the value.
 
 PHP internally stores all arrays as associative arrays; the only difference between associative and indexed arrays is what the keys happen to be. Some array features are provided mainly for use with indexed arrays because they assume that you have or want keys that are consecutive integers beginning at 0. In both cases, the keys are unique. In other words, you can’t have two elements with the same key, regardless of whether the key is a string or an integer.
@@ -282,7 +286,7 @@ for ($i = 0; $i < count($indexed_array); $i++)
 
 Of course, php also has a foreach keyword, which works the same on both types.
 
-## Array Fundamentals
+### Array Fundamentals
 Before we look at creating an array, let’s look at the structure of an existing array. You can access specific values from an existing array using the array variable’s name, followed by the element’s key, or index, within square brackets:
 
 ```php
@@ -313,7 +317,7 @@ print "Hello, {$person['name']}";
 print "Hello, {$person["name"]}";
 ```
 
-## Multidimensional Arrays
+### Multidimensional Arrays
 The values in an array can themselves be arrays. This lets you easily create multidimensional arrays:
 
 ```php
@@ -339,7 +343,7 @@ Failing to use the curly braces results in output like this:
 
 > The value at row 2, column 0 is Array[0]
 
-# HTTP Basics
+## HTTP Basics
 HTTP: the HyperText Transfer Protocol is the transmission protocol used to transmit Web pages on the Internet HTTP, or Hypertext Transfer Protocol is the network protocol used to transmit Web content over the Internet. It works with TCP/IP to transmit information. IP stands for Internet Protocol and handles packaging information for delivery. TCP is the Transmission Control Protocol and it handles packaging information for delivery. HTTP handles addressing the package and providing information that allows the client and server to effectively communicate over the Web.
 
 Yes that's way too many acronyms.
@@ -359,7 +363,7 @@ the HTTP header
 the body of the message
 The body of the message is either the content being sent from the server to the client, or form data or an uploaded file being sent from the client to the server. In other words, it is the thing we think of as being the document we sent or received. Not much more needs to be said about that here. However, the other two sections can use some explanation.
 
-## Request and Response
+### Request and Response
 
 If the request line can be seen as a specification of what to order from whom, the response line can be seen as the receipt confirming that the transaction took place. There can only be one of the two in any message.
 
@@ -392,7 +396,7 @@ The numeric status codes fall into the following ranges:
 
 The most common status message people get to see is 404 Not Found, which simply means that document you requested does not exists. This is either because it really doesn't exist or because you entered the URL wrong. When a 404 is returned it is usually displayed on the browser screen in whatever default format is used by that browser. The server may also transmit a detailed error report page along with an error message if the resource call was unsuccessful.
 
-## The HTTP Header
+### The HTTP Header
 
 People who know just enough HTML to be dangerous encounter the term HTTP header and may think that is corresponds in some way to the document header in an HTML document. This is not the case. The HTML document header is something you have coded into the document between `<head>` tags, and, as far as the server is concerned, is part of the document content being sent. The HTML header is information the author has provided for the client application about the document. The HTTP header, on the other hand, is information the client and server provide each other about the transmission process for the document.
 
@@ -400,13 +404,13 @@ If you need a concrete example, think of the HTML header as the date and address
 
 The HTTP header contains details about the transaction between the client and server, with slight variations depending on whether it is a request or a response. The header information can be grouped into three different categories. These are:
 
-### General
+#### General
 General information fields contain information about either the client or the server. General information can be as general as nothing but the current date and time.
 
-### Entity
+#### Entity
 Entity information fields contain information about the data being transmitted. Common entity information is the date on which the document or resource was last modified or the address of the document requesting this one.
 
-### Request/Response
+#### Request/Response
 The request/response fields contain information about the client and server configuration, including what sort of documents the client can accept and what sort of requests the server can accept. This information includes the server name and version for the server, and the client application name and version for the client. It also includes the platform being used by the client or the server. This information is often used by client or server applications to customize the request or response for the needs of the application on the other end of the connection. It can also be used to specify what sort of documents the client can receive, so, for example, the server knows not to try to send images or audio files to a text-only interface.
 
 Each header field is delimited by a line break at the end. In other words, each data field is written on its own line. The end of the header section is delimited by one or more blank lines. In computer terms, a blank line is nothing but some form of newline character. So the end of the header section is actually delimited by a sequence of line break characters with nothing between them.
@@ -430,7 +434,7 @@ A sample response header might look as follows:
 > Last-modified: Mon, 19th Jan 2015 11:10:47 GMT
 
 
-# Super Globals
+## Super Globals
 
 ***If you are not familiar with arrays, then you probably want to review those before looking at this section.***
 
@@ -468,7 +472,7 @@ The list of super globals is as follows (see [PHP Manual, Superglobals](http://w
 - $_REQUEST
 - $_ENV
 
-## The `$_SERVER[]` Array
+### The `$_SERVER[]` Array
 
 Most of the global arrays store various types of values defined by the programmer. This means there isn't much that can be said about their contents since that is entirely specific to the current script. The exceptions are the `$_SERVER[]` array, which stores system information related to the execution of the current script, and `$_ENV[]` which stores information about the general system environment. These have many predefined values, which we can talk about and of which it is useful to be aware. For now we will focus on the `$_SERVER[]` array. It has values that are of immediate use to us in learning PHP. The elements in the `$_ENV[]` array only come in to place for advanced PHP coding and server management. Although, if you want to know the default mail message for the system, it can found under `$_ENV["MAILMSG"]`
 
@@ -476,7 +480,7 @@ The $`_SERVER[]` array maintains server information that pertains to the current
 
 `$_SERVER` is an array containing information such as headers, paths, and script locations. The web server creates the entries in this array. There is no guarantee that every web server will provide any of these; servers may omit some, or provide others not listed here.
 
-### HTTP Elements
+#### HTTP Elements
 
 Here are the most common HTTP elements. Note that there are many other HTTP headers, including many of no use to PHP, so it ignores them, but these are the ones that contain information useful to successfully serving up content to a client.
 
@@ -490,7 +494,7 @@ Here are the most common HTTP elements. Note that there are many other HTTP head
 - `HTTP_USER_AGENT` -> Contains information on the browser other user agent being used to request content. A typical example is:
     > Mozilla/4.5 [en] (X11; U; Linux 2.2.9 i586)
 
-## CGI Elements
+### CGI Elements
 
 Many of the elements that show up are from the CGI specifications. Here is the list of those and what they contain.
 
@@ -514,7 +518,7 @@ Many of the elements that show up are from the CGI specifications. Here is the l
 - `CONTENT_TYPE` -> The content type of queries with attachments from the client, such as a POST query.
 - `CONTENT_LENGTH` -> The length of the attached content in a such a query.
 
-## Other Server Elements
+### Other Server Elements
 
 The `$_SERVER[]` array also includes some general info provided by the server for its own reference. Here is the basic set.
 
@@ -524,7 +528,7 @@ The `$_SERVER[]` array also includes some general info provided by the server fo
 - `SERVER_ADMIN` -> This element normally contains the e-mail address of the administrator for the server.
 - `SERVER_SIGNATURE` -> The signature of the server is comprised of the server software, the DNS alias and the port number.
 
-# PHP Form Data
+## PHP Form Data
 
 When you are using PHP to process information provided by the user, you are normally doing form processing. Thus, a discussion of how to retrieve data from the user is really about how to process form data submitted by the client to the server. To do this we make use one or more of the following four global arrays:
 - `$_GET[]`
@@ -539,7 +543,7 @@ what happens when we have a GET field and POST field with the same name.
 So for now we will stick with talking about using `$_GET[]` and
 `$_POST[]` to talk about how to process user data.
 
-## The Basics
+### The Basics
 
 The basic concept is really simple. Data returned from the client using the POST method are stored in the `$_POST[]` array by PHP. Data returned from the client using the GET method, or as a query string in the URL, are stored in the `$_GET[]`. It is possible to have both if; for instance, you have a form using a POST method that is posting to a URL that includes a query string.
 
@@ -559,11 +563,11 @@ The above coding snippet would generate a `$_GET[]` elements called `$_GET["flag
 
 To retrieve a value, you just check the array element in `$_GET[]` or `$_POST[]` with the same name as the form field. It is that simple. With a little creative coding, you don't even need to know what the form fields are called in advance; you can just walk the arrays. Although you do need to know what the fields are in order to know what to do with their content.
 
-## Tips and Tricks
+### Tips and Tricks
 
 There are numerous little bits of information that go with the task of processing form data. You can improve your coding if you are ware of them. The following is a list of tips and tricks of for processing form data. They are not presented in any particular order.
 
-### General Tips
+#### General Tips
 
 Forms do not return fields that don't have values, so blank fields with no default values will not be returned to the server. Thus PHP will have to account for the fact that not every form field may be accounted for in the reply from the client.
 
@@ -676,7 +680,7 @@ foreach ($_POST as $key => $value) {
 }
 ```
 
-# Putting It All Together
+## Putting It All Together
 Here is a simple example that takes everything that we have discussed and puts it all together. We have arrays, we have control structures, we use SUPER GLOBALS. What more could you ask for!
 
 ```php
