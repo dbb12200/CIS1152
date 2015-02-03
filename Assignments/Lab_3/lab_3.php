@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @param $temp_in_c
+ */
 function tempWarning($temp_in_c)
 {
     // Use an if else statement
@@ -13,6 +16,11 @@ function tempWarning($temp_in_c)
     echo "Brrrrr. Be sure to dress warmly.";
 }
 
+/**
+ * @param $a
+ * @param $b
+ * @param $c
+ */
 function quadraticEquation($a, $b, $c)
 {
     // Use and if else statement
@@ -36,7 +44,19 @@ function quadraticEquation($a, $b, $c)
     echo "The solutions are: " . $root1 . "and " . $root2;
 
 }
+/**
+ * Lab 4, Form and Post Lab
+ *
+ * This lab focuses on your understanding of arithmatic.
+ *
+ * @version 1.0
+ * @author YOUR_NAME <YOUR_EMAIL_ADDRESS@vtc.edu>
+ * @since 20150120
+ */
 
+/**
+ * @param $letter
+ */
 function consinantOrVowel($letter)
 {
     // Use a switch statement here
@@ -49,6 +69,9 @@ function consinantOrVowel($letter)
 
 }
 
+/**
+ * @param $number
+ */
 function oddOrEven($number)
 {
     // Use the modulus and ternary operator to echo whether the number is odd or even
@@ -61,6 +84,9 @@ function countByThree()
 
 }
 
+/**
+ * @param $count
+ */
 function indefiniteFactorialLoop($count)
 {
     // write a loop that starts at 0 and calculates the factorial to to and including the value of count

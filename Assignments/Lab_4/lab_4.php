@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Lab 2, Arithmatic Lab
+ * Lab 4, Form and Post Lab
  *
  * This lab focuses on your understanding of arithmatic.
  *
@@ -49,3 +49,15 @@ function impactVelocity($height)
 {
 
 }
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class 4 Lab</title>
+</head>
+<body>
+
+</body>
+</html>

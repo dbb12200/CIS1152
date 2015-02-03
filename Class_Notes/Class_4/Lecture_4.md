@@ -669,11 +669,60 @@ Even with `register_globals` turned off, it still pays to screen the input for s
 ```php
 $formField1 = '';
 
-foreach ($_POST as $key => $value)
-{
-    if (isset(${$key})
-    {
+foreach ($_POST as $key => $value) {
+    if (isset(${$key}) {
         ${$key} = $value;
     }
 }
+```
+
+# Putting It All Together
+Here is a simple example that takes everything that we have discussed and puts it all together. We have arrays, we have control structures, we use SUPER GLOBALS. What more could you ask for!
+
+```php
+<?php
+// created by Brian Levin
+if (isset($_POST['submit'])) {
+    $first_name = $_POST["first_name"];
+    $last_name  = $_POST["last_name"];
+} else {
+    $first_name = "";
+    $last_name  = "";
+}
+
+$form_layout = <<< EOD
+<p>
+<form method="post" action="">
+First Name: <input type="text" name="first_name">
+<br>Last Name: <input type="text" name="last_name">
+<br><input type="submit" value="submit" name="submit">
+</form>
+</p>
+
+EOD;
+
+$form_results = "<p> \nFirst Name: " . $first_name . "<br> \nLast Name: " . $last_name . "<br>\n</p>\n";
+
+?>
+
+<html>
+<head>
+<title>Simple PHP Form Example</title>
+</head>
+
+<body>
+
+<?php
+if (!isset($_POST['submit'])) {
+    // display the form
+    echo $form_layout;
+
+} else {
+    // display the output
+    echo $form_results;
+}
+?>
+
+</body>
+</html>
 ```
