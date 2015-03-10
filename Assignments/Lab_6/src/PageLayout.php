@@ -27,15 +27,15 @@ class PageLayout
     public static $header = "<html>\n\t<head>\n\t\t<title>Simple PHP Form Example</title>\n\t</head>\n\t<body>";
     public static $footer = "\n\t</body>\n</html>";
     public static $form_layout = <<< EOD
-    <p>
-    <form method="post" action="">
-        <label name="truncateFloat">Floating Point Value</label><input type="text" name="truncateFloat"><br>
-        <label name="farenheit2Kelvin">Farenheit Value</label><input type="text" name="farenheit2Kelvin"><br>
-        <label name="dodecahedronVolume">Dodecahedron Side Value</label><input type="text" name="dodecahedronVolume"><br>
-        <label name="impactVelocity">Height of Fall Value</label><input type="text" name="impactVelocity"><br>
-        <input type="submit" value="submit" name="submit">
-    </form>
-    </p>
+<p>
+<form method="post" action="">
+    <label name="truncateFloat">Floating Point Value</label><input type="text" name="truncateFloat"><br>
+    <label name="farenheit2Kelvin">Farenheit Value</label><input type="text" name="farenheit2Kelvin"><br>
+    <label name="dodecahedronVolume">Dodecahedron Side Value</label><input type="text" name="dodecahedronVolume"><br>
+    <label name="impactVelocity">Height of Fall Value</label><input type="text" name="impactVelocity"><br>
+    <input type="submit" value="submit" name="submit">
+</form>
+</p>
 EOD;
 
 }

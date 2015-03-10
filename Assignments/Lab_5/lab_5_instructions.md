@@ -1,4 +1,4 @@
-# Lab 4 Instructions
+# Lab 6 Instructions
 
-Lab 5 is completed for you. All you have to do is understand the code.
+Given the code in this file complete index so that it works just like lab 5. Make sure that you put all programming logic in a method.
 
