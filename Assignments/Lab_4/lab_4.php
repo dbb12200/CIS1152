@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
 /**
  * Lab 4, Form and Post Lab
  *
@@ -8,6 +12,10 @@
  * @author YOUR_NAME <YOUR_EMAIL_ADDRESS@vtc.edu>
  * @since 20150120
  */
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
 /**
  * Outputs to the console a truncated float.
  *
@@ -16,36 +24,66 @@
  *
  * @param $float_value
  */
+<<<<<<< HEAD
 define('GRAVITY', 9.8);
 function truncateFloat($float_value)
 {	$truncate = (int) ($float_value*100)/100;
 	echo "The truncated version of " . $float_value . " is: " . $truncate;
 }
+=======
+
+define('GRAVITY', 9.8);
+
+function truncateFloat($float_value)
+{
+
+}
+
+>>>>>>> upstream/master
 /**
  * @param $degrees_f
  */
 function farenheit2Kelvin($degrees_f)
 {
+<<<<<<< HEAD
 	$temp_k= ($degrees_f-32)*(5/9)+273.15;
 	echo "The temperature of " . $degrees_f . " degrees F is: " . $temp_k;
 }
+=======
+
+}
+
+>>>>>>> upstream/master
 /**
  * @param $area
  */
 function dodecahedronVolume($area)
 {
+<<<<<<< HEAD
 	$volume = ((15+(7*sqrt(5)))/4)*pow($area,3);
 	echo "The area of a dodecahedron with a face area of " . $area . " is: " . $volume;
 }
+=======
+
+}
+
+>>>>>>> upstream/master
 /**
  * @param $height
  */
 function impactVelocity($height)
 {
+<<<<<<< HEAD
 	$vel = sqrt(2*GRAVITY*$height);
 	echo "The force the thingy at height " . $height . " will hit the ground at is: " . $vel;
 }
 
+=======
+
+}
+
+?>
+>>>>>>> upstream/master
 
 <!DOCTYPE html>
 <html>
@@ -56,6 +94,7 @@ function impactVelocity($height)
 
 </body>
 </html>
+<<<<<<< HEAD
 $form_layout = <<< EOD
 <p>
 <form method = "post" action="">
@@ -101,3 +140,5 @@ else{
 	echo form_results;
 }
 ?>
+=======
+>>>>>>> upstream/master

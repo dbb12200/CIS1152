@@ -6,7 +6,11 @@
  * This lab focuses on your understanding of arithmatic.
  *
  * @version 1.0
+<<<<<<< HEAD
  * @author Daniel_Bingham <dbb12200@vtc.edi>
+=======
+ * @author YOUR_NAME <YOUR_EMAIL_ADDRESS@vtc.edu>
+>>>>>>> upstream/master
  * @since 20150120
  */
 
