@@ -1,15 +1,13 @@
 <?php
-
 /**
- * Lab 2, Arithmatic Lab
+ * Lab 6, Forms lab
  *
- * This lab focuses on your understanding of arithmatic.
+ * This lab focuses on your understanding of classes.
  *
  * @version 1.0
- * @author YOUR_NAME <YOUR_EMAIL_ADDRESS@vtc.edu>
- * @since 20150120
+ * @author Daniel Bingham <DBingham@vtc.edu>
+ * @since 20150315
  */
-
 /**
  * Outputs to the console a truncated float.
  *
@@ -18,20 +16,14 @@
  *
  * @param $float_value
  */
-
 namespace VTC\Lab_5\MathFun;
-
 class MathFun
 {
-
     const GRAVITY = 9.8;
-
-
     function truncateFloat($float_value)
     {
         return (int) floatval($float_value * 100) / 100;
     }
-
     /**
      * @param $degrees_f
      */
@@ -39,7 +31,6 @@ class MathFun
     {
         return ($degrees_f - 32) * 5 / 9 + 273.15;
     }
-
     /**
      * @param $area
      */
@@ -47,12 +38,11 @@ class MathFun
     {
         return pow($area, 3) / 4 * (15 + 7 * sqrt(5));
     }
-
     /**
      * @param $height
      */
     function impactVelocity($height)
     {
-        return sqrt(2 * GRAVITY * $height);
+        return sqrt(2 * self::GRAVITY * $height);
     }
 }
