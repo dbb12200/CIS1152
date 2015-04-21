@@ -1,0 +1,23 @@
+Daniel Bingham
+Add yourself to the company homework (lab 7)
+
+
+SHOW DATABASES;
+USE CIS1152;
+SHOW tables;
+DESCRIBE employees;
+INSERT INTO employees(emp_no,birth_date,first_name,last_name,gender,hire_date) VALUES (500000,"1992-12-20","Daniel","Bingham","M",NOW());
+DESCRIBE departments;
+SELECT * FROM departments;
+SHOW tables;
+DESCRIBE dept_emp;
+INSERT INTO dept_emp (emp_no,dept_no,from_date,to_date) VALUES ( 500000,"d006",NOW(),"9999-01-01");
+DESCRIBE salaries;
+INSERT INTO salaries(emp_no,salary,from_date,to_date) VALUES(500000,666666,NOW(),"9999-01-01");
+DESCRIBE titles;
+INSERT INTO titles(emp_no,title,from_date,to_date) VALUES(500000,"Sir Lord Fearless Defender of the Faith",NOW(),"9999-01-01");
+SELECT * FROM employees WHERE emp_no=500000;
+SELECT * FROM titles WHERE emp_no=500000;
+SELECT * FROM salaries WHERE emp_no=500000;
+SELECT * FROM dept_emp
+ WHERE emp_no=500000;
